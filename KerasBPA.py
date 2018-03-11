@@ -82,8 +82,24 @@ classifier.fit(X_train,y_train,batch_size=1,epochs=100)
 #Predicting the test set result
 y_pred=classifier.predict(X_test)
 
-y_pred=(y_pred>0.5)
+#y_pred=(y_pred>0.5)
 
 #Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
 cm=confusion_matrix(y_test,y_pred)
+
+
+#Predicting the test set result
+y_pred=classifier.predict(X_test)
+y_pred=sc.inverse_transform(y_pred)
+y_test=sc.inverse_transform(y_test)
+
+#visualing the result
+plt.plot(y_test,color= 'red',label='Real Actual Value')
+plt.plot(y_pred,color= 'blue',label='Predicted Value')
+plt.title('RainFall Prediction')
+plt.xlabel('Year')
+plt.ylabel('Rainfall')
+plt.legend()
+plt.show()
+
